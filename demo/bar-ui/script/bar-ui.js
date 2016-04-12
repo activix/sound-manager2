@@ -1,5 +1,5 @@
 ﻿/*jslint plusplus: true, white: true, nomen: true */
-/*global console, document, navigator, soundManager, window */
+/*global console, document, navigator, soundManager2, window */
 
 (function(window) {
 
@@ -53,13 +53,13 @@
     excludeClass: 'sm2-exclude'
   };
 
-  soundManager.setup({
+  soundManager2.setup({
     // trade-off: higher UI responsiveness (play/progress bar), but may use more CPU.
     html5PollingInterval: 50,
     flashVersion: 9
   });
 
-  soundManager.onready(function() {
+  soundManager2.onready(function() {
 
     var nodes, i, j;
 
@@ -70,7 +70,7 @@
         players.push(new Player(nodes[i]));
       }
     }
-  
+
   });
 
   /**
@@ -112,7 +112,7 @@
     function stopOtherSounds() {
 
       if (playerOptions.stopOtherSounds) {
-        soundManager.stopAll();
+        soundManager2.stopAll();
       }
 
     }
@@ -166,7 +166,7 @@
 
     function makeSound(url) {
 
-      var sound = soundManager.createSound({
+      var sound = soundManager2.createSound({
 
         url: url,
 
@@ -177,15 +177,15 @@
           var progressMaxLeft = 100,
               left,
               width;
-  
+
           left = Math.min(progressMaxLeft, Math.max(0, (progressMaxLeft * (this.position / this.durationEstimate)))) + '%';
           width = Math.min(100, Math.max(0, (100 * this.position / this.durationEstimate))) + '%';
-  
+
           if (this.duration) {
 
             dom.progress.style.left = left;
             dom.progressBar.style.width = width;
-              
+
             // TODO: only write changes
             dom.time.innerHTML = getTime(this.position, true);
 
@@ -267,7 +267,7 @@
           callback('error');
 
           // load next, possibly with delay.
-            
+
           if (navigator.userAgent.match(/mobile/i)) {
             // mobile will likely block the next play() call if there is a setTimeout() - so don't use one here.
             actions.next();
@@ -338,7 +338,7 @@
 
       // if a link is OK, play it.
 
-      if (soundManager.canPlayURL(link.href)) {
+      if (soundManager2.canPlayURL(link.href)) {
 
         // if there's a timer due to failure to play one track, cancel it.
         // catches case when user may use previous/next after an error.
@@ -561,7 +561,7 @@
         }
 
         // update selected offset, too.
-        offset = findOffsetFromItem(liElement);
+        offset = findOffsetFromItem(item);
 
         data.selectedIndex = offset;
 
@@ -574,7 +574,7 @@
         offset = (offset || 0);
 
         item = getItem(offset);
-        
+
         if (item) {
           playLink(item.getElementsByTagName('a')[0]);
         }
@@ -587,7 +587,7 @@
         var item, url;
 
         item = getItem();
-      
+
         if (item) {
           url = item.getElementsByTagName('a')[0].href;
         }
@@ -622,7 +622,7 @@
       function init() {
 
         // inherit the default SM2 volume
-        defaultVolume = soundManager.defaultOptions.volume;
+        defaultVolume = soundManager2.defaultOptions.volume;
 
         initDOM();
         refreshDOM();
@@ -767,7 +767,7 @@
 
           href = target.href;
 
-          if (soundManager.canPlayURL(href)) {
+          if (soundManager2.canPlayURL(href)) {
 
             // not excluded
             if (!utils.css.has(target, playerOptions.excludeClass)) {
@@ -947,7 +947,7 @@
         /**
          * This is an overloaded function that takes mouse/touch events or offset-based item indices.
          * Remember, "auto-play" will not work on mobile devices unless this function is called immediately from a touch or click event.
-         * If you have the link but not the offset, you can also pass a fake event object with a target of an <a> inside the playlist - e.g. { target: someMP3Link }         
+         * If you have the link but not the offset, you can also pass a fake event object with a target of an <a> inside the playlist - e.g. { target: someMP3Link }
          */
 
         var target,
