@@ -333,7 +333,7 @@ function ThreeSixtyPlayer() {
     resume: function() {
       pl.removeClass(this._360data.oUIBox,this._360data.className);
       this._360data.className = pl.css.sPlaying;
-      pl.addClass(this._360data.oUIBox,this._360data.className);      
+      pl.addClass(this._360data.oUIBox,this._360data.className);
     },
 
     finish: function() {
@@ -774,7 +774,7 @@ function ThreeSixtyPlayer() {
   this.getArcEndpointCoords = function(radius, radians) {
 
     return {
-      x: radius * Math.cos(radians), 
+      x: radius * Math.cos(radians),
       y: radius * Math.sin(radians)
     };
 
@@ -1091,7 +1091,7 @@ function ThreeSixtyPlayer() {
            if (canvasElements.length > 1) {
              oCanvas = canvasElements[canvasElements.length-1];
            }
-        } else { 
+        } else {
           // add a handler for the button
           oCanvas = oLinks[i].parentNode.getElementsByTagName('canvas')[0];
         }
@@ -1226,7 +1226,7 @@ ThreeSixtyPlayer.prototype.VUMeter = function(oParent) {
         // for debugging VU images
         /*
         var o = document.createElement('img');
-        o.style.marginRight = '5px'; 
+        o.style.marginRight = '5px';
         o.src = vuMeterData[i][j];
         document.documentElement.appendChild(o);
         */

@@ -19,7 +19,7 @@
 if (!window || !window.document) {
     throw new Error('SoundManager requires a browser with window and document objects.');
 }
-var soundManager = null;
+var soundManager2 = null;
 function SoundManager(smURL, smID) {
     this.setupOptions = {
         'url': (smURL || null),
@@ -45,7 +45,6 @@ function SoundManager(smURL, smID) {
         'noSWFCache': false,
         'idPrefix': 'sound'
     };
-
     this.defaultOptions = {
         'autoLoad': false,
         'autoPlay': false,
@@ -145,7 +144,7 @@ function SoundManager(smURL, smID) {
     this.html5Only = false;
     this.ignoreFlash = false;
     var SMSound,
-    sm2 = this, globalHTML5Audio = null, flash = null, sm = 'soundManager', smc = sm + ': ', h5 = 'HTML5::', id, ua = navigator.userAgent, wl = window.location.href.toString(), doc = document, doNothing, setProperties, init, fV, on_queue = [], debugOpen = true, debugTS, didAppend = false, appendSuccess = false, didInit = false, disabled = false, windowLoaded = false, _wDS, wdCount = 0, initComplete, mixin, assign, extraOptions, addOnEvent, processOnEvents, initUserOnload, delayWaitForEI, waitForEI, rebootIntoHTML5, setVersionInfo, handleFocus, strings, initMovie, domContentLoaded, winOnLoad, didDCLoaded, getDocument, createMovie, catchError, setPolling, initDebug, debugLevels = ['log', 'info', 'warn', 'error'], defaultFlashVersion = 8, disableObject, failSafely, normalizeMovieURL, oRemoved = null, oRemovedHTML = null, str, flashBlockHandler, getSWFCSS, swfCSS, toggleDebug, loopFix, policyFix, complain, idCheck, waitingForEI = false, initPending = false, startTimer, stopTimer, timerExecute, h5TimerCount = 0, h5IntervalTimer = null, parseURL, messages = [],
+    sm2 = this, globalHTML5Audio = null, flash = null, sm = 'soundManager2', smc = sm + ': ', h5 = 'HTML5::', id, ua = navigator.userAgent, wl = window.location.href.toString(), doc = document, doNothing, setProperties, init, fV, on_queue = [], debugOpen = true, debugTS, didAppend = false, appendSuccess = false, didInit = false, disabled = false, windowLoaded = false, _wDS, wdCount = 0, initComplete, mixin, assign, extraOptions, addOnEvent, processOnEvents, initUserOnload, delayWaitForEI, waitForEI, rebootIntoHTML5, setVersionInfo, handleFocus, strings, initMovie, domContentLoaded, winOnLoad, didDCLoaded, getDocument, createMovie, catchError, setPolling, initDebug, debugLevels = ['log', 'info', 'warn', 'error'], defaultFlashVersion = 8, disableObject, failSafely, normalizeMovieURL, oRemoved = null, oRemovedHTML = null, str, flashBlockHandler, getSWFCSS, swfCSS, toggleDebug, loopFix, policyFix, complain, idCheck, waitingForEI = false, initPending = false, startTimer, stopTimer, timerExecute, h5TimerCount = 0, h5IntervalTimer = null, parseURL, messages = [],
     canIgnoreFlash, needsFlash = null, featureCheck, html5OK, html5CanPlay, html5Ext, html5Unload, domContentLoadedIE, testHTML5, event, slice = Array.prototype.slice, useGlobalHTML5Audio = false, lastGlobalHTML5URL, hasFlash, detectFlash, badSafariFix, html5_events, showSupport, flushMessages, wrapCallback, idCounter = 0, didSetup, msecScale = 1000,
     is_iDevice = ua.match(/(ipad|iphone|ipod)/i), isAndroid = ua.match(/android/i), isIE = ua.match(/msie/i),
     isWebkit = ua.match(/webkit/i),
@@ -2736,21 +2735,21 @@ featureCheck = function() {
 }
 // SM2_DEFER details: http://www.schillmania.com/projects/soundmanager2/doc/getstarted/#lazy-loading
 if (window.SM2_DEFER === _undefined || !SM2_DEFER) {
-    soundManager = new SoundManager('/plugins/soundmanager/swf/soundmanager2_flash9.swf');
+    soundManager2 = new SoundManager('/plugins/soundmanager/swf/soundmanager2_flash9.swf');
 }
 if (typeof module === 'object' && module && typeof module.exports === 'object') {
     module.exports.SoundManager = SoundManager;
-    module.exports.soundManager = soundManager;
+    module.exports.soundManager2 = soundManager2;
 } else if (typeof define === 'function' && define.amd) {
     define(function() {
         function getInstance(smBuilder) {
-            if (!window.soundManager && smBuilder instanceof Function) {
+            if (!window.soundManager2 && smBuilder instanceof Function) {
                 var instance = smBuilder(SoundManager);
                 if (instance instanceof SoundManager) {
-                    window.soundManager = instance;
+                    window.soundManager2 = instance;
                 }
             }
-            return window.soundManager;
+            return window.soundManager2;
         }
         return {
             constructor: SoundManager,
@@ -2762,5 +2761,5 @@ if (typeof module === 'object' && module && typeof module.exports === 'object') 
 // constructor
 window.SoundManager = SoundManager;
 // public API, flash callbacks etc.
-window.soundManager = soundManager;
+window.soundManager2 = soundManager2;
 }(window));
