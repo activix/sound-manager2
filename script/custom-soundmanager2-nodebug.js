@@ -14,7 +14,7 @@
 /*global window, SM2_DEFER, sm2Debugger, console, document, navigator, setTimeout, setInterval, clearInterval, Audio, opera, module, define */
 /*jslint regexp: true, sloppy: true, white: true, nomen: true, plusplus: true, todo: true */
 
-(function(window, _undefined) {
+$(function(window, _undefined) {
 "use strict";
 if (!window || !window.document) {
     throw new Error('SoundManager requires a browser with window and document objects.');
@@ -2735,7 +2735,7 @@ featureCheck = function() {
 }
 // SM2_DEFER details: http://www.schillmania.com/projects/soundmanager2/doc/getstarted/#lazy-loading
 if (window.SM2_DEFER === _undefined || !SM2_DEFER) {
-    soundManager2 = new SoundManager('/plugins/soundmanager/swf/soundmanager2_flash9.swf');
+    soundManager2 = new SoundManager('/swf/soundmanager2_flash9.swf');
 }
 if (typeof module === 'object' && module && typeof module.exports === 'object') {
     module.exports.SoundManager = SoundManager;
