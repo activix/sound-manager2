@@ -433,9 +433,6 @@ function ThreeSixtyPlayer() {
         // different sound
         thisSound.togglePause(); // start playing current
         sm._writeDebug('sound different than last sound: '+self.lastSound.id);
-        if (!self.config.allowMultiple && self.lastSound) {
-          self.stopSound(self.lastSound);
-        }
       }
 
     } else {
@@ -543,9 +540,6 @@ function ThreeSixtyPlayer() {
 
       self.soundsByURL[soundURL] = thisSound;
       self.sounds.push(thisSound);
-      if (!self.config.allowMultiple && self.lastSound) {
-        self.stopSound(self.lastSound);
-      }
       thisSound.play();
 
     }
